@@ -1,19 +1,8 @@
-name: daily-post-generator
+name: test
   on:
     workflow_dispatch:
-    schedule:
-      - cron: "0 21 * * *"
   jobs:
-    generate:
+    test:   
       runs-on: ubuntu-latest
-      env:
-        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
-        LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
       steps:
-        - uses: actions/checkout@v4
-        - uses: actions/setup-python@v5
-          with:
-            python-version: "3.11"
-        - run: pip install -r requirements.txt
-        - run: python generate_posts.py
+        - run: echo "hello"
