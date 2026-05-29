@@ -1,18 +1,23 @@
 name: note-post
 
 on:
-  workflow_dispatch:
+workflow_dispatch:
 
 jobs:
-  generate:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+generate:
+runs-on: ubuntu-latest
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Run generate
-        run: python generate.py
+env:
+  LINE_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+  LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+steps:
+  - name: Checkout repository
+    uses: actions/checkout@v4
+  - name: Set up Python
+    uses: actions/setup-python@v5
+    with:
+      python-version: '3.11'
+  - name: Install dependencies
+    run: pip install requests
+  - name: Run generate
+    run: python generate.py
