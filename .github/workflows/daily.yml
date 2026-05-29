@@ -4,19 +4,19 @@ on:
 workflow_dispatch:
 
 jobs:
-generate:
-runs-on: ubuntu-latest
-
+　　generate:
+　　　　runs-on: ubuntu-latest
 env:
-  LINE_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
-  LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+LINE_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
 steps:
-  - name: Checkout repository
-    uses: actions/checkout@v4
+- name: Checkout repository
+uses: actions/checkout@v4
+
   - name: Set up Python
     uses: actions/setup-python@v5
     with:
-      python-version: '3.11'
+      python-version: "3.11"
   - name: Install dependencies
     run: pip install requests
   - name: Run generate
