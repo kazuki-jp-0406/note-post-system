@@ -4,8 +4,6 @@ on:
   schedule:
     - cron: '3 22 * * *'  # 毎日22:03 UTC = 日本時間 翌7:03
   workflow_dispatch:
-  repository_dispatch:
-    types: [cron-trigger]
 
 jobs:
   generate:
