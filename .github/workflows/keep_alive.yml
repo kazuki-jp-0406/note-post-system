@@ -1,0 +1,23 @@
+name: スケジュール維持（月次）
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'  # 毎月1日 0:00 UTC
+  workflow_dispatch:
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4.2.2
+
+      - name: タイムスタンプ更新
+        run: |
+          echo "last updated: $(date -u)" > last-active.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add last-active.txt
+          git commit -m "自動更新：スケジュール維持のため月次タイムスタンプを更新"
+          git push
